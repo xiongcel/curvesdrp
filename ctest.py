@@ -54,7 +54,7 @@ if np.allclose(A, I) or np.allclose(A, -I):
     print("yay")
 # print(np.linalg.eigvals(gens[0]))
 
-def hyp_length(M):
-    tr = np.trace(M)
-    return 1/2 * np.cosh(tr)
-print(f"Hyperbolic length is: {hyp_length(gens[0])}")
+# def hyp_length(M):
+#     tr = np.trace(M)
+#     return 1/2 * np.log(eigenvalue stuff goes here)
+# print(f"Hyperbolic length is: {hyp_length(gens[0])}")
