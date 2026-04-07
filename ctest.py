@@ -52,9 +52,23 @@ A = gens[0]@np.linalg.inv(gens[1])@gens[2]@np.linalg.inv(gens[3])@np.linalg.inv(
 I = np.identity(2)
 if np.allclose(A, I) or np.allclose(A, -I):
     print("yay")
-# print(np.linalg.eigvals(gens[0]))
 
-# def hyp_length(M):
-#     tr = np.trace(M)
-#     return 1/2 * np.log(eigenvalue stuff goes here)
-# print(f"Hyperbolic length is: {hyp_length(gens[0])}")
+#need some stuff conjugating from PSL(2 C) to SL(2 R) here
+
+def get_evals(M):
+    B = np.linalg.eigvals(M)
+    vals = []
+    vals.append(np.real(B[0]))  #for now extract reals from complex evals
+    vals.append(np.real(B[1]))
+    return vals
+
+def hyp_length(M, vals):
+    tr = np.trace(M)
+    if vals[0] > vals[1]:
+        return 1/2 * np.log(vals[0]/vals[1])
+    else: 
+        return 1/2 * np.log(vals[1]/vals[0])
+
+M = gens[3]
+vals = get_evals(M)
+print(f"Hyperbolic length is: {hyp_length(M, vals)}")
